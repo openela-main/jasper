@@ -1,0 +1,12 @@
+diff -urNp a/src/libjasper/include/jasper/jas_config.h.in b/src/libjasper/include/jasper/jas_config.h.in
+--- a/src/libjasper/include/jasper/jas_config.h.in	2025-01-10 10:02:42.927890995 +0100
++++ b/src/libjasper/include/jasper/jas_config.h.in	2025-01-10 10:04:40.634902203 +0100
+@@ -61,7 +61,7 @@
+ #endif
+ 
+ #if !defined(JAS_DEC_DEFAULT_MAX_SAMPLES)
+-#define JAS_DEC_DEFAULT_MAX_SAMPLES (64 * ((size_t) 1048576))
++#define JAS_DEC_DEFAULT_MAX_SAMPLES 0
+ #endif
+ 
+ #if defined(__GNUC__) && !defined(__clang__)

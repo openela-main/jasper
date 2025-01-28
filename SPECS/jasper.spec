@@ -6,7 +6,7 @@
 Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Version: 2.0.14
-Release: 5%{?dist}
+Release: 6%{?dist}
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~frodo/jasper/
@@ -17,6 +17,7 @@ Patch1: jasper-2.0.14-CVE-2016-9396.patch
 Patch2: jasper-2.0.14-CVE-2021-26927.patch
 Patch3: jasper-2.0.14-CVE-2021-3272.patch
 Patch4: jasper-2.0.14-CVE-2020-27828.patch
+Patch5: jasper-2.0.14-MAX-SAMPLES.patch
 
 # architecture related patches
 Patch100: jasper-2.0.2-test-ppc64-disable.patch
@@ -69,6 +70,7 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 %patch2 -p1 -b .CVE-2021-26927
 %patch3 -p1 -b .CVE-2021-3272
 %patch4 -p1 -b .CVE-2020-27828
+%patch5 -p1 
 # Need to disable one test to be able to build it on ppc64 arch
 # At ppc64 this test just stuck (nothing happend - no exception or error)
 
@@ -143,6 +145,9 @@ popd
 
 
 %changelog
+* Fri Jan 10 2025 Josef Ridky <jridky@redhat.com> - 2.0.14-6
+- disable JAS_DEC_DEFAULT_MAX_SAMPLES (RHEL-27923)
+
 * Tue Jun 01 2021 Josef Ridky <jridky@redhat.com> - 2.0.14-5
 - Fix CVE-2021-26927 (#1933860)
 - Fix CVE-2021-26926 (#1922316)
