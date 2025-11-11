@@ -6,7 +6,7 @@
 Summary: Implementation of the JPEG-2000 standard, Part 1
 Name:    jasper
 Version: 2.0.28
-Release: 3%{?dist}
+Release: 4%{?dist}
 
 License: JasPer
 URL:     http://www.ece.uvic.ca/~frodo/jasper/
@@ -15,6 +15,7 @@ Source0: https://github.com/jasper-software/jasper/archive/version-%{version}.ta
 # skip hard-coded prefix/lib rpath
 Patch2: jasper-2.0.14-rpath.patch
 Patch3: jasper-freeglut.patch
+Patch4: jasper-2.0.28-max-samples.patch
 
 # architecture related patches
 Patch100: jasper-2.0.2-test-ppc64-disable.patch
@@ -68,6 +69,7 @@ Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 # Need to disable one test to be able to build it on ppc64 arch
 # At ppc64 this test just stuck (nothing happend - no exception or error)
 %patch3 -p1 -b .freeglut
+%patch4 -p1
 
 %if "%{_arch}" == "ppc64"
 %patch100 -p1 -b .test-ppc64-disable
@@ -128,6 +130,9 @@ make test -C builder
 
 
 %changelog
+* Tue Jul 22 2025 Josef Ridky <jridky@redhat.com> - 2.0.28-4
++ disable JAS_DEC_DEFAULT_MAX_SAMPLES (RHEL-76762)
+
 * Mon Aug 09 2021 Mohan Boddu <mboddu@redhat.com> - 2.0.28-3
 - Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
   Related: rhbz#1991688
